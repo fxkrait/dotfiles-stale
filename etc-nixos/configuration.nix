@@ -1,0 +1,1246 @@
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
+## to update system run: sudo nixos-rebuild switch
+
+# nixos-20.09 https://nixos.org/channels/nixos-20.09
+
+
+{ config, pkgs, ... }:
+
+let
+  #home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  #unstableTarball = fetchTarball
+  #  "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz";
+  companyDBConfig = {
+    db = "companyDB";
+    user = "greghab";
+    password = "dbPass";
+  };
+  #unstable = import <nixos-unstable> {};
+
+  # I was using this one:
+  #stable = import <nixos-21.05> { config = { allowUnfree = true; }; };
+
+  #unstable = import unstableTarball { config = { allowUnfree = true; }; };
+  extensions = (with pkgs.vscode-extensions; [
+    bbenoist.Nix
+    ms-python.python
+    ms-azuretools.vscode-docker
+    #haskell.haskell
+    #jnoortheen-nix-ide
+    #esbenp.prettier-vscode
+  ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+    {
+      name = "remote-ssh-edit";
+      publisher = "ms-vscode-remote";
+      version = "0.47.2";
+      sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+    }
+    {
+      name = "prettier-vscode";
+      publisher = "esbenp";
+      version = "8.1.0";
+      sha256 =
+        "a5a5cc936d61df4ccf0fd1f7f902fd46e515241752b9918b643da819c3d9853b";
+    }
+  ];
+  vscodium-with-extensions = pkgs.vscode-with-extensions.override {
+    vscode = pkgs.vscodium;
+    vscodeExtensions = extensions;
+  };
+
+in {
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./cachix.nix
+    #(import "${home-manager}/nixos")
+    # /home/greghab/.config/nix/musnix
+  ];
+  #https://github.com/reflex-frp/reflex-platform/blob/develop/notes/NixOS.md
+  #  nix.binaryCaches = [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" "https://ros.cachix.org" ];
+  #nix.binaryCachePublicKeys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="];
+
+  # home-manager.users.greghab = {
+  #   /* Here goes your home-manager config, eg home.packages = [ pkgs.foo ]; */
+
+  #   # https://nixos.wiki/wiki/Home_Manager
+  #   # home-manager switch
+  #   programs.git = {
+  #     enable = true;
+  #     extraConfig = {
+  #       credential.helper = "${
+  #         pkgs.git.override { withLibsecret = true; }
+  #       }/bin/git-credential-libsecret";
+  #     };
+  #   };
+
+    
+  #   # https://nixos.wiki/wiki/Git
+
+
+
+    
+  #   # https://github.com/nix-community/home-manager/issues/3047
+  #   home.stateVersion = "18.09";
+  # };
+  
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+    DefaultTimeoutStartSec=10s
+  '';
+
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      #url =
+      #  "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+
+      # pin a version of emacsGCC, so I don't have to keep rebuild it and recompiling by emacs packages each time I updated NixOS (compiling this shit takes forever)
+      # And I don't need the most up-todate packages every hour. I just need a gcc emacs28, and that's good enough. I can update the hash every now and then.
+      # I'm taking static commit id's from: https://github.com/nix-community/emacs-overlay/commits/master
+      #url = "https://github.com/nix-community/emacs-overlay/archive/5bca9851f02ced5649e411e70a19f671ce59d032.tar.gz";
+      #url = "https://github.com/nix-community/emacs-overlay/archive/c77eefc7683c6c56694e4516f6bd5fc6b3b0cf48.tar.gz"; # 12/7/21 
+      url = "https://github.com/nix-community/emacs-overlay/archive/76769a7131ba3a1a71cac8ebcd862c77ebd359d3.tar.gz"; # 03/17/23 
+      
+    }))
+    (import (builtins.fetchTarball
+      "https://github.com/oxalica/rust-overlay/archive/master.tar.gz")) # https://github.com/oxalica/rust-overlay
+  ];
+
+  #nixpkgs.config.permittedInsecurePackages = [ "go-1.14.15" ];
+
+  #swapDevices = [ { device =  "/dev/disk/by-uuid/96799dc1-435e-4583-b361-43af3e2fe35c"; } ];
+
+  #    Option "DRI" "2"
+
+ # services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.deviceSection = ''
+    Option "TearFree" "true"
+  '';
+
+  # Monitor plug n play
+  # https://github.com/phillipberndt/autorandr/blob/v1.0/README.md#how-to-use
+  services.autorandr = { enable = true; };
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs:
+      with pkgs; {
+        # unstable = import unstableTarball {
+        #   config = config.nixpkgs.config;
+        # };
+        # pidgin-with-plugins = pkgs.pidgin-with-plugins.override {
+        #   plugins = [ pidgin-otr purple-discord pidgin-latex purple-matrix ];
+        # };
+        nur = import (builtins.fetchTarball
+          "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+            inherit pkgs;
+          };
+      };
+    permittedInsecurePackages = [
+      # "go-1.14.15" 
+      #"electron-11.5.0"
+      #"electron-13.6.9"
+      "electron-17.4.1"
+    ];
+
+  };
+
+  programs.adb.enable = true;
+
+  # https://discourse.nixos.org/t/always-symlinking-the-latest-jdk-to-a-certain-path/3099/3
+  environment.etc = with pkgs; {
+    #"dev/python38".source = python38Full;
+    "dev/python39".source = python39;
+    "dev/jetbrains.jdk".source = jetbrains.jdk;
+    "dev/jdk11".source = jdk11;
+  };
+
+  services.lorri.enable = true;
+
+  ## maria-db
+  #services.mysql.package = pkgs.mysql;
+  services.mysql.package = pkgs.mariadb;
+  services.mysql.enable = true;
+  #services.mariadb.enable = true;
+  services.longview.mysqlPasswordFile =
+    "/home/greghab/nextcloud/dev/scripts/mysql.password";
+
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_12;
+    enableTCPIP = true;
+    #   authentication = pkgs.lib.mkOverride 10 ''
+    #     local all all trust
+    #     host all all ::1/128 trust
+    #   '';
+    #   initialScript = pkgs.writeText "backend-initScript" ''
+    #     CREATE ROLE greghab WITH LOGIN PASSWORD 'dbPass' CREATEDB;
+    #     CREATE DATABASE testing;
+    #     GRANT ALL PRIVILEGES ON DATABASE testing TO greghab;
+    #   '';
+    authentication = pkgs.lib.mkOverride 12 ''
+      # Generated file; do not edit!
+      # TYPE  DATABASE        USER            ADDRESS                 METHOD
+      local   all             all                                     trust
+      host    all             all             127.0.0.1/32            trust
+      host    all             all             ::1/128                 trust
+    '';
+  };
+
+  # services.mysql = {
+  #   enable = true;
+  #   package = pkgs.mariadb;
+  #   bind = "localhost";
+  #   ensureDatabases = [
+  #     companyDBConfig.db
+  #   ];
+  #   ensureUsers = [
+  #     {
+  #       name = "${companyDBConfig.user}";
+  #       ensurePermissions = {
+  #         "${companyDBConfig.db}.*" = "ALL PRIVILEGES";
+  #       };
+  #     }
+  #   ];
+  # };
+
+  # systemd.services.setdbpass = {
+  #   description = "MySQL database password setup";
+  #   wants = [ "mysql.service" ];
+  #   wantedBy = [ "multi-user.target" ];
+  #   serviceConfig = {
+  #     ExecStart = ''
+  #               ${pkgs.mariadb}/bin/mysql -e "grant all privileges on ${companyDBConfig.db}.* to ${companyDBConfig.user}@localhost identified by '${companyDBConfig.password}';" ${companyDBConfig.db}
+  #     '';       
+  #     User = "root";
+  #     PermissionsStartOnly = true;
+  #     RemainAfterExit = true;
+  #   };
+  # };
+
+  programs.gnupg.agent.pinentryFlavor = "curses";
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  ##emacsWithPackages = (pkgs.emacsPackagesGen pkgs.emacsGcc).emacsWithPackages (epkgs: ([epkgs.vterm epkgs.emacs-libvterm epkgs.exwm ]));
+
+  #users.users.greghab.packages =
+  #	with pkgs;[#vnote
+
+  #            ];
+
+  # https://nixos.wiki/wiki/Flakes
+  nix = {
+    #package = pkgs.nixFlakes;
+    #extraOptions = ''
+    #  experimental-features = nix-command flakes
+    #'';
+
+    settings.substituters = [
+      "https://cache.nixos.org/" # "https://nixcache.reflex-frp.org"[ 23%] Generating ui_monitor_ui.h
+ "https://ros.cachix.org"  "https://hydra.iohk.io" "https://iohk.cachix.org"
+    ];
+    settings.trusted-public-keys = [
+      "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" # "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="  #"hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
+    ];
+
+   };
+
+
+ #    nix.settings = {
+ #    package = pkgs.nixFlakes;
+ #    #extraOptions = ''
+ #    #  experimental-features = nix-command flakes
+ #    #'';
+
+ #    substituters = [
+ #      "https://cache.nixos.org/" # "https://nixcache.reflex-frp.org"[ 23%] Generating ui_monitor_ui.h
+ # "https://ros.cachix.org"  "https://hydra.iohk.io" "https://iohk.cachix.org"
+ #    ];
+ #    trusted-public-keys = [
+ #      "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
+ #      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" # "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="  #"hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
+ #    ];
+
+ #  };
+
+  fonts.fonts = with pkgs; [
+    scientifica
+    #iosevka
+    hack-font
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    #mplus-outline-fonts
+    dina-font
+    proggyfonts
+    source-code-pro
+  ];
+
+  #https://github.com/NixOS/nixpkgs/issues/40001
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [ libGL ];
+    setLdLibraryPath = true;
+    driSupport = true;
+  };
+
+  networking.wireguard.enable = true;
+  networking.iproute2.enable = true;
+  services.mullvad-vpn.enable = true;
+
+  #programs.dconf.enable = true;
+  #services.gnome.gnome-keyring.enable = true;
+
+  #hardware.cpu.intel.updateMicrocode = true;
+
+  #hardware.opengl.enable = true;
+  #hardware.opengl.driSupport = true;
+
+  virtualisation.docker.enable = true;
+  #virtualisation.virtualbox.host.enable = true;
+  #users.extraGroups.vboxusers.members = [ "greghab" ];
+  #virtualisation.virtualbox.host.enableExtensionPack = true;
+  #virtualisation.virtualbox.guest.enable = true;
+  #virtualisation.virtualbox.guest.x11 = true;
+
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+
+  #security.wrappers.spice-client-glib-usb-acl-helper.source =
+  #  "${pkgs.spice_gtk}/bin/spice-client-glib-usb-acl-helper";
+
+  # STEAM::............................................................................
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+  hardware.pulseaudio.support32Bit = true;
+
+  #nixpkgs.config.allowBroken = true;
+  
+  environment.systemPackages = with pkgs; [
+    nix-zsh-completions
+    zsh
+    zsh-completions
+
+
+    keychain
+ 
+    peek
+    gitAndTools.git-extras
+    rustup
+    rust-analyzer
+    #OVMF
+    #OVMF-CSM
+    OVMFFull
+    #OVMF-secureBoot
+    gdb
+    clang
+    clang-tools
+    #electrum
+    monero-gui
+    gnupg
+    simplescreenrecorder
+    flashrom
+    tor-browser-bundle-bin
+    dbeaver
+    #squirrel-sql # jetbrains.datagrip
+    pinentry-curses
+    #remmina
+    plantuml
+    graphviz
+    #pencil
+    silver-searcher
+    ripgrep
+    okular
+    yarn
+    #mysql-workbench
+    i3-gaps
+    dmenu
+    rofi
+    i3status
+    i3lock
+    i3blocks-gaps
+    #freerdp
+    #ocrmypdf
+    #calibre
+    gimp
+    # jetbrains.rider
+    smartmontools
+    mullvad-vpn
+    chromedriver
+    fd
+    # Game Dev Stuff:
+    #unstable.tiled
+
+    #zeroadPackages.zeroad-unwrapped
+    #zeroadPackages.zeroad-data
+
+    gnome.pomodoro
+
+    #nordzy-cursor-theme
+    
+    #bibata-extra-cursors
+
+    # I use bibata-tinted
+    bibata-cursors-translucent
+    
+    #bibata-cursors
+
+    #phinger-cursors
+    #quintom-cursor-theme
+
+    #aqemu
+    #qtemu
+    virt-manager
+
+    fuse-overlayfs
+    dwarfs
+    fzf
+    mlocate
+    gtk4
+    gdk-pixbuf
+    pkg-config
+    graphene
+    # gnome-builder
+    flatpak-builder
+    gnome.cheese
+    pmbootstrap
+    gradle
+    bottles
+
+    jdk11
+    
+    # Temp:
+    openssl
+    
+    
+    heroku
+    ps_mem
+    xsel
+    clipnotify
+    #retext
+    hlint
+    shellcheck
+    nixfmt
+    editorconfig-checker
+    editorconfig-core-c
+    hamster
+    krita
+    zulip
+    ddcui
+    caffeine-ng
+    #intel-gpu-tools
+    acpi
+    upower
+    #syncthing unstable.syncthingtray
+    conda
+    iotop
+    #unstable.awscli2
+    virt-viewer
+
+    ranger
+    #element-desktop
+
+
+    autorandr
+
+    #unstable.ungoogled-chromium
+    # unstable.tartube
+    jetbrains.idea-community
+    # unstable.drawio
+    # unstable.musescore
+    # unstable.android-studio
+    # unstable.eclipses.eclipse-java
+
+    #jetbrains.clion
+    #polar-bookshelf
+    obsidian
+    #stable.obsidian
+    #joplin-desktop
+    #notable
+    #zettlr
+    #standardnotes
+    #trilium-desktop
+    #bookstack
+    #simplenote
+    #typora
+    #marktext
+    
+    firejail # It allows you to restrict, out right block, or even isolate an app to its one contained network, so that I can't mess with the networking of other apps or the system.
+
+    #jdk
+    nyxt
+    #qutebrowser
+
+    exif
+    exiftool
+    libreoffice-fresh
+    #libreoffice
+    #onlyoffice-bin
+    #libreoffice
+    #unstable.jitsi-meet-electron
+    sqlite
+
+    xclip
+    #escrotum
+    #gnome3.cheese
+    nload
+    birdtray
+    audacity
+    pasystray
+    paprefs
+    pamixer
+    pamix
+    man
+    man-pages
+
+    #blender
+    pciutils
+    hwdata
+
+
+    python310Full
+    python310Packages.pygments
+    python310Packages.tkinter
+    #python27Packages.tkinter
+    #python310Packages.jupyterlab
+    #python37Packages.jupyterlab_launcher
+    python310Packages.pip
+    python310Packages.grip
+    #python310Packages.pytest
+    #python310Packages.requests
+    #python310Packages.debugpy
+
+    
+    # python39Full
+    # python39Packages.pygments
+    # python39Packages.tkinter
+    # #python27Packages.tkinter
+    # #python310Packages.jupyterlab
+    # #python37Packages.jupyterlab_launcher
+    # python39Packages.pip
+    # python39Packages.grip
+    # #python39Packages.pytest
+    # #python39Packages.requests
+    # python39Packages.debugpy
+
+
+    
+   #python39Packages.beautifulsoup4
+    # (python38.withPackages (ps: [
+    #   ps.python-language-server
+    #   ps.setuptools
+    #   # the following plugins are optional, they provide type checking, import sorting and code formatting
+    #   ps.pyls-mypy
+    #   ps.pyls-isort
+    #   ps.pyls-black
+    #   ps.pylint
+    #   ps.pygobject3
+    #   ps.venvShellHook
+    #   ps.virtualenv
+    # ]))
+    
+    
+    libmemcached
+    scrot
+    perl534Packages.FileMimeInfo
+    libtool
+    cmake
+    erlang
+    liberation_ttf
+    #jitsi slack
+    #unstable.samba4Full
+    ext4magic
+    libsForQt5.qtkeychain
+    #git-cola
+    #gitkraken
+    xorg.xf86inputevdev
+    xorg.xf86inputsynaptics
+    xorg.xf86inputlibinput
+    #xorg.xf86videointel
+    jq
+    xorg.xorgserver
+    xorg.xkill
+    gcc
+    #lldb_9
+    lldb
+    vscode-extensions.vadimcn.vscode-lldb
+    ##emacsGcc
+    ((emacsPackagesFor emacs).emacsWithPackages
+      (epkgs: [ epkgs.vterm epkgs.exwm ]))
+
+    #((emacsPackagesFor emacsUnstable).emacsWithPackages (epkgs: [
+    #  epkgs.vterm epkgs.exwm
+    #]))
+
+    #((emacsPackagesFor emacsGit).emacsWithPackages
+    #  (epkgs: [ epkgs.vterm epkgs.exwm ]))
+
+    # (emacsWithPackagesFromUsePackage {
+
+    #   config = /home/greghab/.emacs.scratch/init.org;
+    #   alwaysEnsure = true;
+    #   alwaysTangle = true;
+           
+    #   # Package is optional, defaults to pkgs.emacs
+    #   package = (pkgs.emacsGcc.override {
+    #     withXwidgets = true;
+    #     #withGTK3 = true;        
+    #   });
+      
+    #   # Optionally provide extra packages not in the configuration file.
+    #   extraEmacsPackages = epkgs: [
+    #     epkgs.vterm epkgs.exwm
+    #   ];
+    # })
+    gh
+    github-desktop
+    cairo
+    #libstdcxx5 #libgccjit
+    cmatrix
+    conda
+    evince
+    #xfce.xfce4-terminal
+    texlive.combined.scheme-full
+    rxvt-unicode
+    polybar
+    rofi
+    rofi-file-browser
+    pcmanfm
+    neofetch
+    pywal
+    feh
+    #handbrake
+    lmms
+    ardour
+    #cadence
+    lxappearance
+    libvterm
+    htop
+    system-config-printer
+    brlaser
+    brscan4
+    paper-icon-theme
+    breeze-gtk
+    breeze-qt5
+    #shadowfox
+    #rstudioWrapper
+    #R
+    #auctex
+    mplayer
+    mpv
+    kdenlive
+    #jetbrains.pycharm-community
+    redshift
+    texlive.combined.scheme-full
+    mupdf
+    undervolt
+    keepassxc
+    cbatticon
+    networkmanagerapplet
+    vim
+    flameshot
+    udiskie
+    polybar
+    arandr
+    xorg.xbacklight
+    gtk3-x11
+    xorg.xmodmap
+    obs-studio
+    brightnessctl
+    #brave
+    #brave
+    firefox-devedition-bin
+    #firefox
+
+    #home-manager
+
+    elmPackages.elm
+    simple-scan
+    qt5ct
+    #rPackages.Rcpp
+    #rPackages.Rcpp11
+    gfortran
+    pavucontrol
+    s-tui
+    stress
+    erlang
+    git
+    git-credential-keepassxc
+    thunderbird
+    nethogs
+
+    busybox
+    leafpad
+    #kdeFrameworks.kwallet kdeApplications.kwalletmanager
+    gparted
+    inkscape
+    ffmpeg
+    frei0r
+    gnumake
+    dfu-programmer
+    xournalpp
+    zlib
+    sshfs
+    syncthing
+    pandoc
+    #youtube-dl
+    yt-dlp
+    #octaveFull
+
+    virt-manager
+    libvirt
+    qemu
+    virglrenderer
+    signal-desktop
+    #wxcam
+    imagemagick
+    appimage-run
+    docker
+    deluge
+    gitlab-runner
+    file
+    bind
+    ddcutil
+    ddcui
+    p7zip
+    ntfs3g
+    logisim
+    ncdu
+    gsmartcontrol
+    aspell
+    hunspell
+    hunspellDicts.en_US-large
+    hunspellDicts.en-us-large
+    aspellDicts.en-computers
+    aspellDicts.en
+    aspellDicts.en-science
+    javaPackages.junit_4_12
+    xorg.xf86inputkeyboard
+    xorg.xf86inputlibinput
+    xorg.xf86inputmouse
+    xorg.xf86inputevdev
+    xorg.xhost
+    wmname
+    xorg.xorgserver
+    xorg.xf86inputsynaptics
+    xorg.xf86inputsynaptics
+    poppler_utils
+    unclutter-xfixes
+    pnmixer
+    volumeicon
+    zip
+    nomacs
+    android-file-transfer
+    x42-plugins
+    unar
+    unrar
+    xorg.xcursorgen
+    xorg.xcursorthemes
+    binutils
+
+    #freeciv_qt
+    exercism
+
+    #element-web element-desktop
+    steam-run
+    steam
+    #arduino
+    vlc
+    #slic3r
+    #openscad
+    #clojure
+    #leiningen
+
+    valgrind
+    #qtcreator
+    #kdevelop-unwrapped
+    #compton
+    xarchiver
+    qpdfview
+    #gnome3.file-roller
+    libresprite
+
+    #samba4Full
+    smbnetfs
+    libvirt
+    qemu
+    #virtmanager
+    #gnome3.dconf
+    dconf
+    nextcloud-client
+    libsecret
+    libgnome-keyring
+    gnome.libgnome-keyring
+    gnome.gnome-keyring
+    xorg.xf86inputkeyboard
+    xorg.xf86inputlibinput
+    xorg.xf86inputmouse
+    xorg.xf86inputevdev
+    xorg.xhost
+    wmname
+    brightnessctl
+    xorg.xorgserver
+
+    i2c-tools
+    
+
+    zlib
+    libsodium
+
+    direnv
+
+    ungoogled-chromium
+    #unstable.tartube
+    #jetbrains.idea-community
+    drawio
+    #unstable.musescore
+    #android-studio
+    #eclipses.eclipse-java
+    zoom-us
+    nodejs-14_x
+    html-tidy
+    #unstable.vscodium
+    #unstable.vscodium-fhs
+    vscodium
+    #vscodium-fhs
+    #vscodium-with-extensions
+    #vscode
+    vscode-fhs
+    #unstable.vscode
+    anki-bin
+    #postman
+    #google-chrome
+
+    #elementary-planner
+    #insomnia
+
+    # super-productivity
+    helix
+    # carp
+    # SDL2
+    # SDL2_ttf
+    # SDL2_net
+    # SDL2_gfx
+    # SDL2_sound
+    # SDL2_mixer
+    # SDL2_image
+    
+
+    mono
+    w3m
+    btrfs-progs
+    unixtools.fsck
+    #unstable.mailspring
+
+    #unstable.yubioath-desktop
+    #unstable.yubikey-manager-qt
+    #unstable.yubikey-personalization-gui
+
+    #unstable.bitwarden
+
+    #unstable.mullvad-vpn
+    cryptomator
+    #dunst
+    libnotify
+
+    gmni
+    asuka
+    mattermost-desktop
+    dino
+   #gajim
+
+    gpodder
+    giara
+    headset
+    headlines
+    waydroid
+
+    lapce
+
+    
+    vocal
+    sysprof
+    
+    caffeine-ng
+    
+    #gnome-builder
+
+    # https://nixos.wiki/wiki/OpenSnitch
+    #opensnitch
+    #opensnitch-ui
+
+    #me_cleaner
+
+    #gnome.nautilus
+    glib
+    gsettings-desktop-schemas
+    
+    blanket
+    foliate
+    #nur.repos.sikmir.librewolf
+    #discord
+    #zathura
+    #sioyek
+    # reddit app with requires loggin :(
+    #unstable.giara
+
+    logseq
+    ddcutil
+    picom
+    #gpodder
+    czkawka
+    #electrum
+    #wasabiwallet
+
+    freetube
+    #ferdi
+    bpftrace
+
+    #epson-escpr
+    #epson-escpr2
+    libappindicator-gtk3
+
+    #guile
+    #mitscheme
+
+    spice-gtk
+
+    #pidgin-with-plugins
+    # (pidgin-with-plugins.override { plugins = [purple-discord]; })
+
+    #    pidgin
+    #   (pidgin.override { plugins = [ purple-hangouts purple-facebook purple-matrix purple-discord]; })
+
+    steam
+    (steam.override {
+      extraPkgs = pkgs: [ mono gtk3 gtk3-x11 libgdiplus zlib ];
+      #nativeOnly = true;
+    }).run
+    gnome.seahorse
+    lxqt.lxqt-policykit # provides a default authentification client for policykit  (https://nixos.wiki/wiki/Samba)
+
+  ];
+  #.......................................................................................
+
+  # opensnitch setup
+  # https://blog.project-insanity.org/2021/04/01/setup-opensnitch-on-nixos/
+  # systemd = {
+  #   services = {
+  #     opensnitch = {
+  #       description = "Opensnitch Application Firewall Daemon";
+  #       wants = [ "network.target" ];
+  #       after = [ "network.target" ];
+  #       wantedBy = [ "multi-user.target" ];
+  #       path = [ pkgs.iptables ];
+  #       serviceConfig = {
+  #         Type = "simple";
+  #         PermissionsStartOnly = true;
+  #         ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /etc/opensnitch/rules";
+  #         ExecStart =
+  #           "${opensnitch}/bin/opensnitchd -rules-path /etc/opensnitch/rules";
+  #         Restart = "always";
+  #         RestartSec = 30;
+  #       };
+  #       enable = true;
+  #     };
+  #   };
+  # };
+
+  #services.opensnitch.enable = true;
+  
+
+  services.gvfs.enable = true; # enables gvfs
+
+  # https://nixos.org/nixos/manual/index.html#module-services-flatpak
+  services.flatpak.enable = true;
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals =
+    [ pkgs.xdg-desktop-portal-gtk ]; # flatpack desktop integration
+
+  # use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest-libre;
+  boot.extraModulePackages = with config.boot.kernelPackages; [ cpupower ];
+  networking.hostName = "nixGreg"; # Define your hostname.
+  networking.networkmanager.enable = true;
+  #   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
+  # Per-interface useDHCP will be mandatory in the future, so this generated config
+  # replicates the default behaviour.
+#  networking.useDHCP = false;
+ # networking.interfaces.eno1.useDHCP = true;
+ # networking.interfaces.wlp1s0.useDHCP = true;
+  # networking.interfaces.wlp3s0.useDHCP = true;
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Select internationalisation properties.
+  console.keyMap = "dvorak";
+  i18n = {
+    #   consoleFont = "Lat2-Terminus16";
+    #consoleKeyMap = "dvorak";
+    defaultLocale = "en_US.UTF-8";
+  };
+
+  # Set your time zone.
+  time.timeZone = "America/Los_Angeles";
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  # environment.systemPackages = with pkgs; [
+  #   wget vim
+  # ];
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  networking.firewall.enable = true;
+  networking.firewall.allowPing = true;
+  networking.firewall.allowedTCPPorts = [ 445 139 ];
+  networking.firewall.allowedUDPPorts = [ 137 138 ];
+  networking.firewall.checkReversePath = "loose";
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  services.printing.drivers = [
+    pkgs.brlaser
+    pkgs.hplipWithPlugin
+    pkgs.brgenml1lpr
+    pkgs.brgenml1cupswrapper
+    #pkgs.epson-escpr
+    #pkgs.epson-escpr2
+  ];
+
+  hardware = {
+    sane = {
+      enable = true;
+      brscan4 = {
+        enable = true;
+        netDevices = {
+          home = {
+            model = "HL-L2380DW";
+            ip = "192.168.0.171";
+          };
+        };
+      };
+    };
+  };
+
+  # Enable sound.
+  #sound.enable = true;
+  #hardware.pulseaudio.enable = true;
+
+  #nixpkgs.config.pulseaudio = true;
+
+
+  # rtkit is optional but recommended
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+  };
+
+
+  
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.greghab = {
+    isNormalUser = true;
+    home = "/home/greghab";
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "scanner"
+      "lp"
+      "vboxusers"
+      "libvirtd"
+      "kvm"
+      "docker"
+      "audio"
+      "adbusers"
+      "i2c"
+    ]; # Enable ‘sudo’ for the user.
+  }; # "jackaudio"
+
+  ## ddcutil support
+  ## https://github.com/NixOS/nixpkgs/issues/91771
+  services.udev.extraRules = ''
+    # allow admin use of i2c devices
+    ACTION=="add", KERNEL=="i2c-[0-9]*", GROUP="wheel", MODE="666"
+  '';
+
+  programs.zsh.enable = true;
+  
+  users.extraUsers.greghab = { shell = pkgs.zsh; };
+
+  
+  ## Gnome3
+
+  # services.xserver = {
+  # enable = true;
+  # layout = "us";
+  #  xkbVariant = "dvp";
+  #  libinput = {
+  #   enable = true;
+  #  };
+  # displayManager = {
+  #    gdm.enable = true;
+  # };
+  # desktopManager = {
+  #   gnome3.enable = true;
+  # };
+  # };
+
+  ## i3-wm
+  environment.pathsToLink =
+    [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
+  #services.xserver.windowManager.i3.package = pkgs.i3-gaps;
+
+  services.xserver = {
+    enable = true;
+
+    desktopManager = { xterm.enable = false; };
+
+    displayManager = { defaultSession = "none+i3"; };
+
+    layout = "us";
+    xkbVariant = "dvp";
+    libinput = { enable = true; };
+
+    windowManager.i3 = {
+      package = pkgs.i3-gaps;
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu # application launcher most people use
+        i3status # gives you the default i3 status bar
+        i3lock # default i3 screen locker
+        i3blocks # if you are planning on using i3blocks over i3status
+      ];
+    };
+  };
+
+  #StartX
+  # services.xserver = {
+  #   enable = true;
+  #   layout = "us";
+  #   xkbVariant = "dvp";
+  #   libinput = {
+  #     enable = true;
+  #   };
+  #   displayManager = {
+  #     startx.enable = true;
+  #   };
+  # };
+
+  ## Xfce
+  # services.xserver = {
+  #   enable = true;
+  #    layout = "us";
+  #    xkbVariant = "dvp";
+  #    libinput = {
+  #      enable = true;
+  #    };
+  #    desktopManager = {
+  #      default = "xfce";
+  #      xterm.enable = false;
+  #      xfce.enable = true;
+  #    };
+  # };
+
+  # https://github.com/NixOS/nixpkgs/issues/27050
+  environment.variables.QT_QPA_PLATFORMTHEME = "qt5ct";
+
+  environment.variables.QT_SCALE_FACTOR = "1";
+  environment.variables.QT_AUTO_SCREEN_SCALE_FACTOR = "0";
+  environment.variables.QT_SCREEN_SCALE_FACTORS = "1";
+  #programs.qt5ct.enable = true;
+  qt.platformTheme = "qt5ct";
+
+  environment.variables.PLANTUML_JAR =
+    "/home/greghab/nextcloud/data/extPrograms/plantuml.jar";
+
+  #       usershare max share = 100
+  #    usershare allow guests = no
+  #    force user = greghab
+
+  # services.samba = {
+  #   enable = true;
+  #   securityType = "user";
+  #   extraConfig = ''
+  #     workgroup = nixWork
+  #     security = user
+  #     server role = standalone server
+  #     server string = sambaServer
+  #     map to guest = bad user
+  #     force user = greghab
+  # '';
+  #   shares = {
+  #     homeDirectory = {
+  #       path = "/home/greghab";
+  #       browseable = "no";
+  #       "read only" = "no";
+  #       "guest ok" = "no";
+  #     };
+  #   };
+  # };
+
+  ## trying to fix why my computer keeps suspending by itself after a given amount of time...
+  services.xserver.displayManager.gdm.autoSuspend = false;
+
+  # disable lid
+  services.logind.lidSwitch = "ignore";
+  services.logind.extraConfig = "HandleLidSwitch=ignore";
+
+  # ADDED this to try to stop my laptop from going to sleep after a period of time, and then it when I wake up my USB ports stop working at times.
+
+  #powerManagement.enable = false;
+  # Disable the GNOME3/GDM auto-suspend feature that cannot be disabled in GUI!
+  # If no user is logged in, the machine will power down after 20 minutes.
+  #systemd.targets.sleep.enable = false;
+  #systemd.targets.suspend.enable = false;
+  #systemd.targets.hibernate.enable = false;
+  #systemd.targets.hybrid-sleep.enable = false;
+
+  security.sudo.configFile = "%wheel ALL = (ALL) ALL";
+
+  # This value determines the NixOS release with which your system is to be
+  # compatible, in order to avoid breaking some software such as database
+  # servers. You should change this only after NixOS release notes say you
+  # should.
+  system.stateVersion = "22.11"; # Did you read the comment?
+  
+}
+

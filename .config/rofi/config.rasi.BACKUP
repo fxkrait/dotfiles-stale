@@ -1,0 +1,8 @@
+configuration {
+   theme: "/nix/store/lwh7mg32la7fimaadf812hhqb2ycsv10-rofi-1.7.3/share/rofi/themes/purple.rasi";
+  filebrowser {
+      directories-first: true;
+      directory:         "~/neetcode";
+      sorting-method:    "name";
+  }
+}
