@@ -1,0 +1,40 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("readme.org"
+ (filename . "~/dev/git/piletexodus/readme.org")
+ (front-context-string . "* The Energy (Th")
+ (rear-context-string)
+ (position . 1))
+("org-capture-last-stored"
+ (filename . "~/Documents/org/org-roam/lang_carp.org")
+ (front-context-string)
+ (rear-context-string . ":\n#+title: Carp\n")
+ (position . 82))
+("org-mode-snippets"
+ (filename . "/sudo:root@localhost:/home/greghab/.emacs.scratch/snippets/org-mode/")
+ (front-context-string . "  /sudo:root@loc")
+ (rear-context-string)
+ (position . 1))
+("init.org"
+ (filename . "/sudo:root@localhost:/home/greghab/.emacs.scratch/init.org")
+ (front-context-string . "#+AUTHOR: Gregor")
+ (rear-context-string)
+ (position . 1))
+(".bashrc"
+ (filename . "/sudo:root@localhost:/home/greghab/.bashrc")
+ (front-context-string . "export JAVA_HOME")
+ (rear-context-string)
+ (position . 1))
+(".zshrc"
+ (filename . "/sudo:root@localhost:/home/greghab/.zshrc")
+ (front-context-string . "# Lines configur")
+ (rear-context-string)
+ (position . 1))
+("configuration.nix"
+ (filename . "/sudo:root@localhost:/etc/nixos/configuration.nix")
+ (front-context-string . "\n    mono\n    w3")
+ (rear-context-string . "er-productivity\n")
+ (position . 18821))
+)

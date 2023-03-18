@@ -1,0 +1,1 @@
+("~/Documents/org/" "~/dev/" "~/dev/java/HelloWorld/" "~/dev/python/HelloWorld/" "~/dev/interviewPrep/gtci/" "~/nextcloud/notes/" "~/dev/github/rust/aoc-2018_day09-rs/" "~/dev/github/gallery-dl/" "~/nextcloud/data/leetcode/" "~/dev/plutusPioneer/" "~/school/UW-TAC/" "~/nextcloud/" "~/dev/haskell/getProgrammingWithHaskell/")

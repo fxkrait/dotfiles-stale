@@ -1,0 +1,37 @@
+;; -*- emacs-lisp -*- <23/02/25 18:49:19 /home/greghab/.emacs.scratch/tramp>
+;; Tramp connection history.  Don't change this file.
+;; Run `M-x tramp-cleanup-all-connections' instead.
+
+(((tramp-file-name "ssh" "greghab" nil "192.168.0.36" nil nil nil)
+  ("null-device" "/dev/null")
+  ("uname" "Linux 5.11.7")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("test" "test")
+  ("remote-path"
+   ("/run/current-system/sw/bin" "/bin" "/usr/bin"))
+  ("pipe-buf" 4096)
+  ("remote-shell" "/bin/sh")
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("file-exists" "test -e")
+  ("case-insensitive" nil)
+  ("readlink" "\\readlink")
+  ("stat" "env QUOTING_STYLE=locale \\stat")
+  ("id" "/run/current-system/sw/bin/id")
+  ("gid-integer" 100)
+  ("gid-string" "users")
+  ("uid-string" "greghab")
+  ("uid-integer" 1000))
+ ((tramp-file-name "sudo" "root" nil "192.168.0.36" nil nil nil)
+  ("null-device" "/dev/null"))
+ ((tramp-file-name "sudo" "root" nil "localhost" nil nil nil)
+  ("null-device" "/dev/null")
+  ("uname" "Linux 6.1.12")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("test" "test")
+  ("remote-path"
+   ("/run/current-system/sw/bin" "/bin" "/usr/bin"))
+  ("pipe-buf" 4096)
+  ("remote-shell" "/bin/sh")
+  ("file-exists" "test -e")))

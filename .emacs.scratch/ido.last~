@@ -1,0 +1,131 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/greghab/" . ".emacs.d/")
+ ("/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/Exercises/" . "images/")
+ ("/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/" . "Notes/")
+ ("/home/toreshi/focus/UW-Tac/19-Fall/" . "discreteMath/")
+ ("/home/toreshi/nextcloud/dev/" . "scripts/")
+ ("/home/toreshi/nextcloud/" . "dev/")
+ ("/home/toreshi/.emacs.d/snippets/" . "latex-mode/")
+ ("/home/toreshi/.emacs.d/" . "snippets/")
+ ("/home/toreshi/focus/UW-Tac/" . "19-Fall/")
+ ("/home/toreshi/focus/" . "UW-Tac/")
+ ("/home/toreshi/CS211(A)/assignments/" . "EW00/")
+ ("/home/toreshi/CS211(A)/" . "assignments/")
+ ("/home/toreshi/" . ".config/")
+ ("/home/toreshi/.config/" . "i3/")
+ ("/home/" . "toreshi/")
+ ("/usr/share/" . "xsessions/")
+ ("/usr/" . "share/")
+ ("/" . "home/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/greghab/.emacs.d/"
+ "/home/toreshi/"
+ "/home/toreshi/.emacs.d/"
+ "/home/toreshi/.config/i3/"
+ "/home/toreshi/documents/zen/"
+ "/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/Notes/"
+ "/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/TextBooks/"
+ "/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/Other/"
+ "/home/toreshi/.emacs.d/snippets/latex-mode/"
+ "/home/toreshi/focus/UW-Tac/19-Fall/"
+ "/home/toreshi/downloads/"
+ "/home/toreshi/nextcloud/dev/scripts/"
+ "/home/toreshi/focus/"
+ "/home/toreshi/.config/youtube-dl/"
+ "/usr/share/xsessions/"
+ "/home/toreshi/CS211(A)/assignments/EW00/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "init.org.brokenBackup"
+ "init.org"
+ "init.el"
+ "Testing.class"
+ ".wget-hsts"
+ "1.tex"
+ "Testing.java"
+ "test"
+ "config"
+ "*cfw-calendar*"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/greghab/.emacs.d/" (24274 10287 308462 48000) "init.el~" "./" "recentf" "../" "init.org" "xelb/" "auto-save-list/" "2020-05-16_14-28-13_screenshot.png" "1589100791" ".cache/" "init.elc" "straight/" "elpa/" "snippets/" "#init.rog#" "back/" "lisp/" "init.org~" "projectile-bookmarks.eld" "init.orgMinimal" "ido.last" "ido.last~" "init.el" "data/" "init.elc~" "exwm/" "init.org.brokenBackup" "themes/" "transient/" "tramp" "projectile.cache" "extPrograms/" "init.elc.bak" "elpy/")
+
+ ("/home/greghab/" (24274 9629 496989 588000) "githubMessage.txt" "#test.org#" "files/" ".xorg.log.old" "4-positional.html/" ".emacs.d.bak/" ".grip/" ".erlang_history" ".steampath" "testdisk.log" ".swt/" ".saves/" ".aspell.en.pws" ".authinfo" ".Rhistory" ".esd_auth" ".Xresources" ".steampid" ".steam/" "restore3/" "Documents/" ".dia/" "Diagram1.dia.autosave" "downloads/" ".var/" "Do Not Use Z490 Motherboard Auto Settings - Excessive Voltage, Power, & Heat-qQ_AETO7Fn4.mp4" ".histfile" ".gnupg/" "Music/" ".elfeed/" "org-download-master.zip" "#test2.org#" ".thumbnails/" ".notable.json" ".cache/" "dev/" "#test#" ".vscode-oss/" "Public/" "test" "Windows 10 Enterprise LTSC 2019 X64 OFF19 en-US JAN 2020 {Gen2}/" ".mozillabak/" ".log/" "Downloads/" "R/" "testing/" ".gtk-bookmarks" ".emacs.d.basicWorking/" "nixBackups/" "name.md" ".ICEauthority" ".emacs.dStraightEl/" ".zcompdump.nixGreg.2015" ".mindforger.md" ".npm/" ".thunderbird/" "mount/" ".m2/" "restore2/" ".gtkrc-2.0" ".aspell.en.prepl" ".mplayer/" ".notable/" "Templates/" ".AndroidStudio3.5/" ".jitsi/" "Videos/" ".lmmsrc.xml" ".zshrc" ".texlive2019/" ".Xauthority" ".freemind/" "backup/" "restore/" ".serverauth.10676" ".zsh_history" "data/" ".java/" ".python_history" ".nix-channels" "mindforger-repository/" ".pki/" ".dvdcss/" ".ghc/" ".xsession-errors.old" "notes.sqlite" "phd-thesis.pdf" "nextcloud/" ".screenlayout/" ".cabal/" ".gitkraken/" ".fehbg" "exwm/" ".compose-cache/" ".android/" ".gitconfig" ".atom/" "photorec.se2" "org-download-master/" ".xournalpp/" ".bash_history" ".dialyzer_plt" ".zcompdump.nixGreg.2298" ".Xdefaults" ".rstudio-desktop/" ".jackdrc" ".polar/" ".IdeaIC2019.3/" "school/" "Pictures/" "test2.org" ".zcompdump" ".config/" "Datapath and Pipelining.pptx" "webinar.txt" ".xinitrc" ".nix-defexpr/" ".xorg.log" ".mozilla/" "stale_outputs_checked" "HomeBackup/" ".tooling/" "JoplinPreWipe5-14-20.jex" "Desktop/" ".emacs.dStraightWorking/" ".emacs.d/" "test2.org~" ".emacs.dBrokenStraight/" "imgs/" ".dbus/" ".eclipse/" "packages.txt" "undervolt.sh" ".emacs.d.workingBackup/" "data.kdbx" ".zoom/" ".ssh/" ".xsession-errors" ".nix-profile/" ".elpa/" ".PyCharmCE2019.3/" ".local/" "schoolBackup/" "intellij.txt" "../" "./")
+
+ ("/home/toreshi/dev/kata/" (24016 34927 589805 69000) "../" "kata.clj" "kata.hs" "./" "kataHaskell.log" "kataHaskell.aux" "kataHaskell.pdf" "kataHaskell.tex")
+
+ ("/home/toreshi/" (23927 21153 139429 429000) "../" ".ics" ".gtk-bookmarks" ".w3m/" ".keras/" ".android/" ".cmaptools/" ".non-mixer/" ".sane/" ".pki/" "Testing.java" ".emacs.d.bak/" "reduced.gif" "notes" ".mbsync/" ".helm/" ".steam/" ".dmrc" "toImplement" ".elfeed/" "librelounge-ep-023.ogg" ".Slic3r/" "CS211(A)/" ".rnd" ".icsa" ".tor-browser/" "udo systemctl disable tlp" ".saves/" ".gtkrc-2.0" ".openjfx/" ".steampid" ".Xdefaults" "ThingsToMemorize.odt" ".zdirs" ".ipfs/" ".tex" ".emacs_anywhere/" ".fltk/" ".fehbg" ".mozilla/" ".ghc/" ".eclipse/" ".IdeaIC2019.2/" "lambda.txt" ".bash_history" "out-1.ogv" ".freemind/" ".mbsyncrc" "xmodmapShift" ".adom.data/" ".bash_profile" "howtolearn.odt" ".elinks/" "data/" "out.ogv" "./" ".java/" "focus/" "exwm.pdf" ".xinitrc.bak" ".xinitrc" ".emacs.d/" ".freedroid_rpg/" "1.tex" ".icons/" ".spring/" "~.tex" ".slime/" ".steampath" ".AndroidStudio3.4/" ".esd_auth" ".bashrc" ".mbsyncrc.bak" ".cargo/" ".mono/" ".xournalpp/" ".lmmsrc.xml" ".xbindkeysrc" ".Xauthority" ".frictionalgames/" ".gnome/" ".subversion/" ".ncmpcpp/" ".bash_logout" "documents/" ".config/" ".xsession-errors.old" ".cache/" ".zsh_history" ".weechat/" "vid/" ".wget-hsts" ".rubberband.wisdom.d" ".vscode/" ".xsession-errors" "school/" ".pulse/" ".local/" ".zcompdump" ".lyrics/" "untitled.webm" ".gnupg/" ".ghci" ".thunderbird/" "youtube-dl" ".emacs.bak" ".zshrc" "message.odt" ".tor-browser-en-us/" ".Sayonara/" "nextcloud/" "xmodmap" "Testing.class" ".zynaddsubfx-bank-cache.xml" "toProcess" ".audacity-data/" ".newsboat/" "gifcast_190820184927.gif" "label.png" ".thumbnails/" ".~lock.questions.odt#" "rebindSuper.sh" "test" ".ccnet/" "stale_outputs_checked" ".viminfo" ".npm/" "out.gif" ".texlive/" ".openra/" ".swt/" ".mplayer/" ".tooling/" ".electron-gyp/" "downloads/" ".mu/" "learnMoreStudyLess.odt" ".log/" ".xsession" ".asoundrc" ".screenlayout/" "resetbindings.sh")
+
+ ("/home/toreshi/.emacs.d/" (23927 14895 759512 736000) "../" "timelog" "%backup%~" "network-security.data" "eshell/" "themes/" "srecode-map.el" "back/" "nov-places" ".cask/" "url/" "init.org" "data/" "./" "ido.last" "init.el.bak2" "irony/" ".org-id-locations" "projectile-bookmarks.eld" "snippets/" "emms/" "request/" "#init.org.bak#" "meghanada/" "init.el" "init.elc" "auto-save-list/" "history" "mentor/" "lisp/" "elpa/")
+
+ ("/home/toreshi/.config/" (23927 14659 499515 882000) "../" "i3/" "kdeglobals" "aqemu/" "kconf_updaterc" "galculator/" "sway/" "leafpad/" "Trilium Notes/" "pychess/" "emaildefaults" "Mendeley Ltd./" "Notepadqq/" "Brackets-Electron/" "StardewValley/" "kactivitymanagerdrc" "octave/" "cef_user_data/" "InSilmaril/" "menus/" "inkscape/" "enchant/" "SuperCollider/" "neofetch/" "rtv/" "pulse/" "autostart/" "ktimerrc" "PdfMerger/" "fontforge/" "procps/" "Atom/" "falkTX/" "lutris/" "ulduzsoft/" "newsboat/" "deadbeef/" "Git-it/" "gtk-3.0/" "filezilla/" "joplin-desktop/" "kalgebrarc" "Thunar/" "alacritty/" "labplot2rc" "kde.org/" "htop/" "a2j/" "youtube-viewer/" "dconf/" "cava/" "okularrc" "s-tui/" "RStudio/" "OpenSCAD/" "Code/" "pnmixer/" "Joplin/" "polybar/" "unity3d/" "khal/" "Clementine/" "StarUML/" "trizen/" "Popcorn-Time/" "obs-studio/" "gconf/" "pcmanfm/" "ardour6/" "qBittorrent/" "Turtl/" "katepartrc" "./" "kritadisplayrc" "okularpartrc" "syncthing/" "falkon/" "volti/" "balena-etcher-electron/" "cherrytree/" "beets/" "deluge/" "pmbootstrap.cfg" "ntk/" "evince/" "mimeapps.list" "LibreCAD/" "XfceThemeManager/" "caja/" "styluslabs/" "configstore/" "cmus/" "nheko/" "jack/" "0ad/" "godot/" "Task Coach/" "user-dirs.locale" "SASM Project/" "amarokrc" "DisplayCAL/" "tlpui/" "keepassxc/" "pure-data/" "pdfmod/" "sequencer64/" "pavucontrol.ini" "QtProject/" ".mono/" "darktable/" "mpv/" "turtl/" "Pathephone/" "kmymoney/" "mimeapps.list~" "qt5ct/" "libreoffice/" "rclone/" "katevirc" "Dharkael/" "freeciv-qt-client.ini" "Trolltech.conf" "kglobalshortcutsrc" "user-dirs.dirs" "urxvtconfig/" "Carnet/" "fontconfig/" "qutebrowser/" "GIMP/" "lsp-plugins/" "VirtualBox/" "matplotlib/" "VeraCrypt/" "ranger/" "evolution/" "Notion/" "Riot/" "google-chrome/" "Cryptomator/" "xfce4/" "guvcview2/" "libfm/" "spyder/" "goa-1.0/" "pamac/" "Cadence/" "kdenliverc" "wal/" "youtube-dl/" "sublime-text-3/" "QtProject.conf" "kicad/" "Zeal/" "freeplane/" "inkdrop/" "kritarc" "yad.conf" "lftp/" "Signal/" "mpd/" "rofi/" "tea/" "kwalletrc" "mplayer/" "exercism/" "calibre/" "diskmonitorrc" "kmousetool_strokes.txt" "chromium/" "MineTime/" "karboncalligraphyrc" "ardour5/" "bup/" "gtk-2.0/" "flare/" "zathura/" "FreeTube/" "vlc/" "zettlr/" "skypeforlinux/" "Nextcloud/" "gscan2pdfrc" "umbrellorc" "aseprite/" "kmousetoolrc" "p3x-onenote/" "youtube-dlg/" "etcher-electron/")
+
+ ("/home/toreshi/documents/zen/" (23927 14551 919517 314000) "../" "study.org" "objects.org" "notes/" "selfdoc.pdf" "selfdoc.org" "selfdoc.tex" "techWrite.org" "#*cfw-calendar*#" "workgroups/" "#objects.org#" "work-journal/" "./" "#academics.org#" "schedule.org_archive" "journal.org" "academics.org" "otherdoc.org" "test.org" "commands.org" "emacs.org" "emacsAutosave/" "selfdoc.org_archive" "books/" "*cfw-calendar*" "work.org" "schedule.org" "testing.org" "Routine.org" "stale_outputs_checked" "testing.html" "journal/" "tex/")
+
+ ("/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/Notes/" (23926 14133 218801 915000) "1.1.aux" "../" "1.1-ex.log" "1.2.tex" "1.3.log" "1.2-ex.log" "1.2-ref.tex" "1.2.pdf" "1.0.log" "1.2-ex.aux" "1.2-ref.aux" "1.2-ex.pdf" "1.1-ex.aux" "1.1.log" "./" "1.0.tex" "images/" "1.1-ref.pdf" "1.0.aux" "1.1-ref.tex" "1.3.aux" "1.2.aux" "1.1.pdf" "1.1-ex.pdf" "1.1-ex.tex" "1.1.tex" "1.0.pdf" "1.2-ex.tex" "1.2-ref.log" "1.3.pdf" "1.2.log" "1.2-ref.pdf" "1.3.tex" "1.1-ref.aux" "1.1-ref.log")
+
+ ("/usr/share/xsessions/" (23915 51403 7328 71000) "../" "./" "i3.desktop" "exwm.desktop" "i3-with-shmlog.desktop")
+
+ ("/home/toreshi/downloads/" (23925 64311 39006 387000) "../" "temp/" "11 - Uzi Anthem.mp3" "10 - Opp Pack.mp3" "07 - No Wannabes.mp3" "01 - Addy Talk.mp3" "16 - Drip On.mp3" "00 - Cover Front.jpg" "06 - Southside Story.mp3" "stevetrovs_10K_mega_belt_base.zip" "09 - Belly Shit.mp3" "04 - Sheesh.mp3" "14 - Freak.mp3" "13 - Truth.mp3" "._config" "190122-ph102-chapter16.pdf" "./" "Lil_GotIt-The_Real_Goat.zip" "02 - Zaytoven Freestyle.mp3" "VettlingrTileSet.zip" "stevetrovs_10K_mega_belt_base/" "12 - Pocket Watchin'.mp3" "08 - No Talking.mp3" ".itch.toml" "15 - Fun Girl.mp3" "LinuxLNP-0.44.12-r03.tar.gz" "05 - Brotherly Love.mp3" "LinuxLNP-0.44.12-r03/" "03 - The Wave.mp3")
+
+ ("/home/toreshi/.emacs.d/snippets/latex-mode/" (23912 58264 535651 313000) "../" "und.yasnippet" "emphasis.yasnippet" "fbox.yasnippet" "./" "definition.yasnippet" "indent.yasnippet")
+
+ ("/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/Other/" (23912 57757 555646 833000) "../" "examples.tex" "./" "examples.pdf" "examples.log" "examples.aux")
+
+ ("/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/Documents/" (23912 32011 985419 324000) "../" "./")
+
+ ("/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/Exercises/images/" (23912 32492 695423 572000) "../" "1.2/" "./" "1.1/")
+
+ ("/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/Exercises/" (23912 55224 605624 450000) "../" "./" "images/")
+
+ ("/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/" (23912 56906 835639 315000) "../" "Documents/" "./" "images/" "Exercises/" "TextBooks/" "Notes/" "Other/")
+
+ ("/home/toreshi/.emacs.d.bak/" (23901 308 629935 261000) "../" "timelog" "%backup%~" "network-security.data" "eshell/" "themes/" "back/" "nov-places" ".cask/" "url/" "init.org" "data/" "./" "ido.last" "irony/" ".org-id-locations" "projectile-bookmarks.eld" "emms/" "meghanada/" "init.el" "auto-save-list/" "history" "init.el.bak" "mentor/" "lisp/" "elpa/")
+
+ ("/home/toreshi/focus/UW-Tac/19-Fall/discreteMath/TextBooks/" (23912 32008 895419 296000) "../" "./" "Rosen_Discrete_Mathematics_and_Its_Applications_7th_Edition.pdf" "Kenneth H Rosen, Jerrold W. Grossman - Student’s Solutions Guide to Accompany Discrete Mathematics and Its Applications-McGraw-Hill (2011).pdf")
+
+ ("/home/toreshi/focus/UW-Tac/19-Fall/" (23912 31951 5418 785000) "../" "discreteMath/" "./")
+
+ ("/home/toreshi/focus/UW-Tac/" (23911 11974 804663 127000) "../" "./" "19-Fall/" "Fun/")
+
+ ("/home/toreshi/focus/" (23911 11971 344663 97000) "../" "UW-Tac/" "learnYouAHaskell.org" "./" "Learn You a Haskell for Great Good - Lipovaca - No Starch (2011).pdf" "baby.hs" "learnYouAHaskell.pdf" "Will Kurt - Get Programming with Haskell-Manning Publications (2018).pdf" "learnYouAHaskell.tex" "lambdaCalculusForBeginners.org" "auto/")
+
+ ("/home/toreshi/nextcloud/dev/scripts/" (23908 55928 683314 148000) "../" "emacsclient.sh" "undervoltAndDisableHT.sh" "undervoltNoTurbo.sh" "mountFlashDrive.sh" "fixNetwork.sh" "screenshot.sh" "upgrade.sh~" "./" "undervolt.sh~" "cpuTF.sh" "update.sh~" "update.sh" "undervolt.sh" "clearOldPackagesOnArch.sh" "fixsuspend.sh" "mergePDFs.sh" "suspend.sh" "upgrade.sh" "turbo.sh" "compressPDF.sh" "batchCompress.sh" "disableHT.sh" "restartNM.sh")
+
+ ("/home/toreshi/nextcloud/dev/" (23867 56384 96404 539000) "../" "gl/" "GradientDescentExample/" "./" "focus/" "scripts/" "programming/" "sentdex/")
+
+ ("/home/toreshi/nextcloud/" (23897 5888 813392 14000) "../" "dev/" ".resource/" "multipleColors.png" ".sync/" "data/" "./" "flash.gif" "yogaBackup/" "config" ".Contacts-Backup/" "whiteBackground.gif" "documents/" "firstPage.png" "darkBackground.gif")
+
+ ("/home/toreshi/.emacs.d/snippets/" (23907 5877 99826 407000) "../" "latex-mode/" "./")
+
+ ("/home/toreshi/.config/i3/" (23908 29392 633079 653000) "../" "compton.conf" "./" "config~" "config")
+
+ ("/home/toreshi/CS211(A)/assignments/EW00/" (23900 44725 219046 455000) "../" "details.org" "HablutzelGregoryEW00-1.zip" "./" "Rectangle.java" "details.png" "RectangleTest.java" "stale_outputs_checked")
+
+ ("/home/toreshi/.config/youtube-dl/" (23900 58390 878864 517000) "../" "youtube-dl-channel.conf" "./" "youtube-dl-archive.txt" "config" "config.bak" "youtube-dl-channels.txt" "youtube-dl-playlist.conf")
+
+ ("/usr/share/" (23900 11146 759493 503000) "lirc/" "groff/" "help/" "libdrm/" "iana-etc/" "daxctl/" "postgresql/" "gstreamer-1.0/" "lua/" "nano/" "galculator/" "backgrounds/" "rhythmbox/" "libgc-mono/" "imlib2/" "config.kcfg/" "themes/" "okular/" "installed-tests/" "cmake-3.15/" "glade/" "kvantummanager/" "openvpn/" "inkscape/" "enchant/" "media-player-info/" "i18n/" "helm/" "lxappearance/" "joplin/" "mysql/" "automake-1.16/" "haskell-pretty-show/" "emacs/" "ibus/" "PdfMerger/" "libalpm/" "vim/" "smartmontools/" "thumbnailers/" "snmp/" "lv2specgen/" "hspell/" "bash-completion/" "rttr/" "mypaint-data/" "calf/" "pygtk/" "appdata/" "ffmpeg/" "makepkg/" "gnome-pomodoro/" "zoneinfo/" "terminfo/" "sbcl-source/" "pandoc-crossref/" "deadbeef/" "drirc.d/" "sip/" "metainfo/" "freemind/" "libwacom/" "amsynth/" "w3m/" "tlpkg/" "bakefile/" "kxmlgui5/" "gtk-3.0/" "mime-info/" "dhcpcd/" "kvantumpreview/" "djvu/" "gnome/" "gitweb/" "GeoIP/" "filezilla/" "libftdi/" "woeusb/" "Thunar/" "gcc-6.5.0/" "lensfun/" "openal/" "xsessions/" "kservicetypes5/" "t1lib/" "ufw/" "sounds/" "kservices5/" "libmate-desktop/" "dbus-1/" "mkinitcpio/" "cmake/" "qlogging-categories5/" "brother/" "katepart5/" "idl/" "tc/" "mu/" "lxqt/" "cuneiform/" "kdevappwizard/" "gettext/" "libgphoto2_port/" "awk/" "Kvantum/" "desktop-directories/" "hwinfo/" "pcmanfm/" "avahi/" "gitk/" "readline/" "ocio/" "gnome-bluetooth/" "tlp/" "ladspa/" "gcc-9.1.0/" "qt/" "jay/" "obs/" "clementine/" "cherrytree/" "usb_modeswitch/" "kf5/" "iptables/" "nautilus-python/" "siji/" "evince/" "shared-color-targets/" "cracklib/" "feedreader/" "lollypop/" "joplin-cli/" "sane/" "blueman/" "caja/" "java/" "gapi-2.0/" "cinnamon/" "cmus/" "nemo-python/" "aclocal-1.16/" "systemtap/" "system-config-printer/" "pkgconfig/" "cups/" "caja-python/" "tabset/" "gimp/" "ghostscript/" "liblo/" "app-info/" "haskell/" "pixmaps/" "DisplayCAL/" "keepassxc/" "firebird/" "mono-2.0/" "cryptui/" "atril/" "color-schemes/" "libgnomekbd/" "ImageMagick-7/" "git/" "aclocal/" "color/" "gst-plugins-base/" "libgweather/" "gnome-control-center/" "slsh/" "git-gui/" "wayland-sessions/" "autoconf/" ".mono/" "fonts/" "misc/" "keyutils/" "glib-2.0/" "application-registry/" "gvfs/" "gdb/" "highlight/" "boostbook/" "amarok/" "anki/" "ppd/" "qt5ct/" "makepkg-template/" "libreoffice/" "liblangtag/" "libcaca/" "acpi_call-lts/" "haskell-byteable/" "colord/" "hunspell/" "fish/" "cadence/" "libinput/" "zsh/" "flameshot/" "icons/" "xournalpp/" "lmms/" "mathjax/" "myspell/" "evolution/" "accountsservice/" "icu/" "lightdm-gtk-greeter-settings/" "iso-codes/" "libfm/" "gnome-video-effects/" "kconf_update/" "gettext-0.19.8/" "idea/" "purpose/" "wayland/" "unknown-horizons/" "libgpg-error/" "kpackage/" "tessdata/" "file/" "phonon4qt5/" "luajit-2.0.5/" "mobile-broadband-provider-info/" "X11/" "doc/" "libthai/" "stk/" "feh/" "factory/" "man/" "pandoc-citeproc/" "xcb/" "nextcloud/" "freeplane/" "gir-1.0/" "sayonara/" "gnupg/" "pandoc/" "mlt/" "GConf/" "gtk-doc/" "libnumbertext/" "alsa/" "libwmf/" "bison/" "xtables/" "virtualbox/" "vym/" "grub/" "gobject-introspection-1.0/" "et/" "rofi/" "libexttextcat/" "mimelnk/" "argyllcms/" "libtool/" "xgreeters/" "pulseaudio/" "applications/" "knotifications5/" "blender/" "poppler/" "netpbm/" "kdenlive/" "graphite2/" "licenses/" "zynaddsubfx/" "git-core/" "ca-certificates/" "cogl/" "calibre/" "zoneinfo-leaps/" "audacity/" "gnome-color-manager/" "guile/" "haskell-colour/" "dict/" "OSL/" "ImageMagick-6/" "xml/" "zenity/" "fenrirscreenreader/" "ardour5/" "common-lisp/" "gnome-shell/" "m17n/" "texmf-dist/" "solid/" "libgphoto2/" "fltk/" "systemd/" "mime/" "pacman/" "hwdata/" "vala/" "gegl-0.4/" "gtk-2.0/" "sgml/" "gtksourceview-2.0/" "locale/" "pygobject/" "ss/" "vlc/" "texinfo/" "info/" "wayland-protocols/" "evolution-data-server/" "defaults/" "kbd/" "accounts/" "haskell-doctemplates/" "xapian-core/" "pavucontrol/" "gnome-settings-daemon/" "mate-about/" "redland/" "zoneinfo-posix/" "gufw/" "perl5/" "org.kde.syntax-highlighting/" "libquvi-scripts/" "glvnd/" "liblouis/" "p11-kit/" "polkit-1/" "../" "./")
+
+ ("/usr/" (23900 42477 539076 380000) "../" "lib64/" "share/" "include/" "docs/" "./" "lib32/" "local/" "bin/" "sbin/" "src/" "lib/")
+
+ ("/home/toreshi/CS211(A)/assignments/" (23899 11359 692956 513000) "../" "Weekly Reading Quiz #9/" "In Class #1/" "EW06/" "Weekly Reading Quiz #5/" "Weekly Reading Quiz #4/" "Weekly Reading Quiz #1/" "EW07/" "EW00/" "Reading Assignment 6/" "EW04/" "EW01/" "./" "EW05/" "Reading Assignment 4/" "assignments2.png" "Reading Assignment 3/" "Weekly Reading Quiz #7/" "Reading Assignment 5/" "Midterm Exam (part 2)/" "Weekly Reading Quiz #6/" "notes.org" "EW08/" "assignments1.png" "Reading Assignment 2/" "Weekly Reading Quiz #3/" "Reading Assignment 7/" "Weekly Reading Quiz #2/" "EW03/" "Reading Assignment 1/" "Reading Assignment 8/" "Extra Credit #1/" "Reading Assignment 9/" "EW09/" "Weekly Reading Quiz #8/" "EW02/" "Final Exam/" "Midterm Exam (part 1)/")
+
+ ("/home/toreshi/CS211(A)/" (23899 9374 542938 971000) "../" "./" "files/" "assignments/")
+
+ ("/home/toreshi/documents/" (23877 61473 246750 711000) "../" "Professional/" "archive/" "notes" "tablets" "./" "quotes" "important/" "zen/" "selfAuthoring.odt" "links" "lyrics" "MapsOfMeaning.org" "tex/")
+
+ ("/home/" (23786 56592 388419 582000) "../" "./" "toreshi/")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

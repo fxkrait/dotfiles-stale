@@ -1,0 +1,14 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '(("www.reviewjournal.com"
+  [url-cookie "vip-go-seg" "vc-v1__RJApp_--_no" "Sat Dec 17 17:47:01 2022 GMT" "/" "www.reviewjournal.com" nil]))
+)
+(setq url-cookie-secure-storage
+ 'nil)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:

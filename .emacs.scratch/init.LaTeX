@@ -1,0 +1,24 @@
+\\usepackage{fvextra}
+\\fvset{
+  commandchars=\\\\\\{\\},
+  highlightcolor=white!95!black!80!blue,
+  breaklines=true,
+  breaksymbol=\\color{white!60!black}\\tiny\\ensuremath{\\hookrightarrow}}
+\\renewcommand\\theFancyVerbLine{\\footnotesize\\color{black!40!white}\\arabic{FancyVerbLine}}
+
+\\definecolor{codebackground}{HTML}{f7f7f7}
+\\definecolor{codeborder}{HTML}{f0f0f0}
+
+% TODO have code boxes keep line vertical alignment
+\\usepackage[breakable,xparse]{tcolorbox}
+\\DeclareTColorBox[]{Code}{o}%
+{colback=codebackground, colframe=codeborder,
+  fontupper=\\footnotesize,
+  colupper=EFD,
+  IfNoValueTF={#1}%
+  {boxsep=2pt, arc=2.5pt, outer arc=2.5pt,
+    boxrule=0.5pt, left=2pt}%
+  {boxsep=2.5pt, arc=0pt, outer arc=0pt,
+    boxrule=0pt, leftrule=1.5pt, left=0.5pt},
+  right=2pt, top=1pt, bottom=0.5pt,
+  breakable}

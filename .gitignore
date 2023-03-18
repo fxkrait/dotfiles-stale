@@ -1,0 +1,13 @@
+.emacs.scratch/straight/build/
+.emacs.scratch/straight/modified/
+.emacs.scratch/straight/repos/
+.emacs.scratch/var/
+.emacs.scratch/workspace/
+.emacs.scratch/elpy/
+.emacs.scratch/eln-cache/
+.emacs.scratch/auto-save-list/
+.emacs.scratch/.extension/
+.emacs.scratch/.cache/
+
+
+.emacs.d/auto-save-list/

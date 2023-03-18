@@ -1,0 +1,17 @@
+ls
+cd 
+cd dev
+cd git
+cd ..
+cd github
+ls
+git clone https://github.com/mikf/gallery-dl
+cd gallery-dl/
+ls
+pip install -r requirements.txt 
+-m venv example
+python -m venv example
+source example/bin/activate
+ls
+cd example/
+source bin/activate
