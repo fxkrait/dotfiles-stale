@@ -1,4 +1,4 @@
 [[file:emacsAndNixOS.png]]
 
 
-- (Eventually to be freshly baked and synced via the [[https://github.com/nix-community/home-manager][Home Manager]] nix module).
+- (Eventually to be synced via the [[https://github.com/nix-community/home-manager][Home Manager]] nix module).
